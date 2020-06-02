@@ -66,6 +66,7 @@ public
 yarn-error.log
 .pnp/
 .pnp.js
+
 # Yarn Integrity file
 .yarn-integrity
 
@@ -73,3 +74,4 @@ yarn-error.log
 .prettierrc
 LICENSE
 yarn.lock
+package-lock.json

@@ -8,13 +8,14 @@ import compression from 'compression'
 require('dotenv').config({ path: '../.env' })
 const app = express()
 app.use(express.json())
-app.use(CORS())
 app.use(compression())
 
 const CORSOptions = {
   origin: 'http://localhost:8000',
   optionsSuccessStatus: 200,
 }
+
+app.use(CORS(CORSOptions))
 
 // CONTACT FORM SEND EMAIL
 
@@ -114,10 +115,10 @@ app.post('/login', CORS(CORSOptions), (req, res) => {
 // ADMIN STORE IMAGES
 
 const storage = multer.diskStorage({
-  destination: function(req, file, callback) {
+  destination: function (req, file, callback) {
     callback(null, 'uploads/')
   },
-  filename: function(req, file, callback) {
+  filename: function (req, file, callback) {
     callback(null, Date.now() + '-' + file.originalname)
   },
 })
@@ -125,7 +126,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage }).array('photos')
 
 app.post('/savePhotos', CORS(CORSOptions), (req, res) => {
-  upload(req, res, err => {
+  upload(req, res, (err) => {
     if (err instanceof multer.MulterError) {
       res.json({ message: 'Files not stored' })
     } else if (err) {
@@ -144,7 +145,7 @@ app.use(
 // ADMIN REMOVE IMAGE
 
 app.post('/removePhoto', CORS(CORSOptions), (req, res) => {
-  fileSystem.unlink(`uploads/${req.body.photo}`, error => {
+  fileSystem.unlink(`uploads/${req.body.photo}`, (error) => {
     if (error) {
       res.json({ message: 'Error' })
       console.log(error)
@@ -166,7 +167,7 @@ app.post('/saveProject', CORS(CORSOptions), (req, res) => {
       let allProjects = [...existingProjects, req.body]
       let allProjectsJSON = JSON.stringify(allProjects)
 
-      fileSystem.writeFile('latestProjects.json', allProjectsJSON, err => {
+      fileSystem.writeFile('latestProjects.json', allProjectsJSON, (err) => {
         if (err) {
           res.json({ message: 'Error adding new project' })
         } else {

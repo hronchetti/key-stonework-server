@@ -9,13 +9,13 @@ require('dotenv').config({ path: '.env' })
 
 const app = express()
 app.use(express.json())
-app.use(CORS(CORSOptions))
+app.use(CORS())
 app.use(compression())
 
 const whitelist = [
   'http://localhost:8000',
-  'https://key-stonework.netlify.app/',
-  'https://keystonework.co.uk/',
+  'https://key-stonework.netlify.app',
+  'https://keystonework.co.uk',
 ]
 
 const CORSOptions = {

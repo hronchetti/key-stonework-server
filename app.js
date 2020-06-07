@@ -5,17 +5,26 @@ import multer from 'multer'
 import fileSystem from 'file-system'
 import compression from 'compression'
 
-require('dotenv').config({ path: '../.env' })
+require('dotenv').config({ path: '.env' })
+
 const app = express()
 app.use(express.json())
+app.use(CORS())
 app.use(compression())
 
-const CORSOptions = {
-  origin: 'http://localhost:8000',
-  optionsSuccessStatus: 200,
-}
+const whitelist = [
+  'http://localhost:8000',
+  'https://key-stonework.netlify.app/',
+  'https://keystonework.co.uk/',
+]
 
-app.use(CORS(CORSOptions))
+const CORSOptions = {
+  origin: (origin, callback) => {
+    whitelist.indexOf(origin) !== -1
+      ? callback(null, true)
+      : callback(new Error('Not allowed by CORS'))
+  },
+}
 
 // CONTACT FORM SEND EMAIL
 
@@ -109,6 +118,7 @@ app.post('/login', CORS(CORSOptions), (req, res) => {
     res.json({ message: 'Success' })
   } else {
     res.json({ message: 'Error' })
+    console.log
   }
 })
 

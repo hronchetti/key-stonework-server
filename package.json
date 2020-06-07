@@ -4,11 +4,11 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js --exec babel-node --presets babel-preset-env",
+    "start": "nodemon --exec babel-node  app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Harry Ronchetti <harryronchetti@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "compression": "^1.7.4",
     "cors": "^2.8.5",
@@ -20,10 +20,11 @@
     "nodemon": "^1.19.4"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^8.0.6",
-    "babel-preset-env": "^1.7.0"
+    "@babel/cli": "^7.10.1",
+    "@babel/core": "^7.10.2",
+    "@babel/node": "^7.10.1",
+    "@babel/preset-env": "^7.10.2",
+    "babel-loader": "^8.0.6"
   },
   "engines": {
     "node": "12.x"

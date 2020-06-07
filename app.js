@@ -9,7 +9,7 @@ require('dotenv').config({ path: '.env' })
 
 const app = express()
 app.use(express.json())
-app.use(CORS())
+app.use(CORS(CORSOptions))
 app.use(compression())
 
 const whitelist = [

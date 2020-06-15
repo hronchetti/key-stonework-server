@@ -55,9 +55,13 @@ const upload = multer({ storage: storage }).array('photos')
 app.post('/savePhotos', CORS(CORSOptions), (req, res) => {
   upload(req, res, (err) => {
     if (err instanceof multer.MulterError) {
+      console.log(err)
       res.json({ message: 'Files not stored' })
     } else if (err) {
+      console.log(err)
       res.json({ message: 'General error' })
+    } else {
+      res.json({ message: 'Unknown error' })
     }
     res.json({ message: 'Success', files: req.files })
   })

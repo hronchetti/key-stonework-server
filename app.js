@@ -55,12 +55,13 @@ const upload = multer({ storage: storage }).array('photos')
 app.post('/savePhotos', CORS(CORSOptions), (req, res) => {
   upload(req, res, (err) => {
     if (err instanceof multer.MulterError) {
-      console.log(err)
+      console.error(err)
       res.json({ message: 'Files not stored' })
     } else if (err) {
-      console.log(err)
+      console.error(err)
       res.json({ message: 'General error' })
     } else {
+      console.log(req.files)
       res.json({ message: 'Success', files: req.files })
     }
   })
@@ -94,7 +95,7 @@ app.post('/saveProject', CORS(CORSOptions), (req, res) => {
       res.json({ message: 'Error finding latest projects' })
     } else {
       let existingProjects = JSON.parse(data)
-      let allProjects = [...existingProjects, req.body]
+      let allProjects = [req.body, ...existingProjects]
       let allProjectsJSON = JSON.stringify(allProjects)
 
       fileSystem.writeFile('latestProjects.json', allProjectsJSON, (err) => {

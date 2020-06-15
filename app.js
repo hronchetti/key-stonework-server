@@ -61,9 +61,8 @@ app.post('/savePhotos', CORS(CORSOptions), (req, res) => {
       console.log(err)
       res.json({ message: 'General error' })
     } else {
-      res.json({ message: 'Unknown error' })
+      res.json({ message: 'Success', files: req.files })
     }
-    res.json({ message: 'Success', files: req.files })
   })
 })
 

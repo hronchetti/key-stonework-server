@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon --exec babel-node  app.js",
+    "start": "nodemon --exec npx babel-node --presets @babel/preset-env app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Harry Ronchetti <harryronchetti@gmail.com>",

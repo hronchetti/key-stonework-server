@@ -75,3 +75,7 @@ yarn-error.log
 LICENSE
 yarn.lock
 package-lock.json
+
+# Protecting uploads
+uploads/
+latestProjects.json

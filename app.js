@@ -13,7 +13,7 @@ app.use(compression())
 
 const whitelist = [
   'http://localhost:8000',
-  'https://key-stonework.netlify.app',
+  'https://keystonework-testing.netlify.app',
   'https://keystonework.co.uk',
 ]
 
